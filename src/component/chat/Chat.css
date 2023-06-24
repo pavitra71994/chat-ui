@@ -1,0 +1,13 @@
+.containerBox{
+    position: absolute;
+    min-height: 90%;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.sendingText{
+    position: absolute;
+    bottom: 0px;
+    display: flex;
+}

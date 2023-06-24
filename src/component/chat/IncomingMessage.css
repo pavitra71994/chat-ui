@@ -1,0 +1,17 @@
+.incomingMessageBoxSent{
+    display: flex;
+}
+
+.incomingMessageBoxReceived{
+    display: flex;
+    margin-left: 60%;
+}
+
+.message{
+    min-width: 200px;
+}
+
+.sender{
+    position: absolute;
+    right: 10px;
+}
