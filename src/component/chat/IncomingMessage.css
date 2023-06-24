@@ -1,17 +1,29 @@
-.incomingMessageBoxSent{
+.messageBoxSent{
     display: flex;
 }
 
-.incomingMessageBoxReceived{
+.messageBoxReceived{
     display: flex;
-    margin-left: 60%;
 }
 
-.message{
-    min-width: 200px;
+.messageSent{
+    width: 70%;
+    overflow-wrap: break-word;
+}
+
+.messageReceived{
+    width: 70%;
+    overflow-wrap: break-word;
 }
 
 .sender{
     position: absolute;
     right: 10px;
+}
+
+.dateStyle{
+    right: 10px;
+    bottom: -9px;
+    position: absolute;
+    font-size: 10px;
 }
