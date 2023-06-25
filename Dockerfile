@@ -1,5 +1,5 @@
 # A node.js v10 box
-FROM node:10
+FROM node:18
 
 # Who(m) to blame if nothing works
 #MAINTAINER nobody@nowhere.com
@@ -15,7 +15,7 @@ WORKDIR /usr/src/app
 COPY . .
 
 # Install dependencies (if any) in package.json
-RUN yarn install
+RUN npm install
 
 # Expose port from container so host can access 3000
 EXPOSE 3000
