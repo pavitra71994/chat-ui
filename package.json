@@ -1,4 +1,8 @@
 {
+  "engines" : { 
+    "npm" : ">9",
+    "node" : ">18"
+  },
   "name": "chat-ui",
   "version": "0.1.0",
   "private": true,

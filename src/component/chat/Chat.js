@@ -22,7 +22,7 @@ function Chat() {
     }
 
     const onRegister = () => {
-        let Sock = new SockJS('http://localhost:8080/ws')
+        let Sock = new SockJS('https://chatserver-lzop.onrender.com/ws')
         stomp = over(Sock);
         stomp.connect({}, onConnected, onError);
         setMessage({...message, sender: user});
