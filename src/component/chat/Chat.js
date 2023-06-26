@@ -11,12 +11,12 @@ var stomp = null;
 var url = window.location.host.includes('localhost') ? Constants.LOCAL_URL : Constants.BASE_URL
 function Chat() {
     const [connected, setConnected] = useState(false);
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState("");
     const [chatThread, setChatThread] = useState([]);
     const [message, setMessage ] = useState({
         id: null,
         sender: null,
-        message: null,
+        message: "",
         datetime: null
     });
 
@@ -27,7 +27,7 @@ function Chat() {
     useEffect(() => {
             fetch(url+ '/messages',
             {headers: new Headers({
-                'Access-Control-Allow-Origin': url
+                'Access-Control-Allow-Origin': 'http://localhost:8080'
             })})
             .then(resp => resp.json())
             .then(data => setChatThread(data))
@@ -96,7 +96,7 @@ function Chat() {
         </div>
     : 
         <div className='containerBoxRegister'>
-            < Input type='text' bsSize="sm" onChange={onChangeName} className='registerTxtStyle' placeholder='Please type your name to continue'/>
+            < Input type='text' bsSize="sm" onChange={onChangeName} value={user} className='registerTxtStyle' placeholder='Please type your name to continue'/>
             <FcAdvance size={50} onClick={onRegister} className='buttonRegisterStyle'/>
         </div>
 
