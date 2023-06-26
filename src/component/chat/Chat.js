@@ -1,17 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Input, Label } from 'reactstrap';
 import IncomingMessage from './IncomingMessage';
 import SockJS from 'sockjs-client';
 import { over } from 'stompjs';
 import './Chat.css';
 import { FcAdvance } from "react-icons/fc";
+import * as Constants from '../constants/Constants'
 
 var stomp = null;
+var url = window.location.host.includes('localhost') ? Constants.LOCAL_URL : Constants.BASE_URL
 function Chat() {
     const [connected, setConnected] = useState(false);
     const [user, setUser] = useState(null);
     const [chatThread, setChatThread] = useState([]);
     const [message, setMessage ] = useState({
+        id: null,
         sender: null,
         message: null,
         datetime: null
@@ -21,12 +24,20 @@ function Chat() {
         setUser(e.target.value);
     }
 
+    useEffect(() => {
+            fetch(url+ '/messages',
+            {headers: new Headers({
+                'Access-Control-Allow-Origin': 'http://localhost:8080'
+            })})
+            .then(resp => resp.json())
+            .then(data => setChatThread(data))
+    }, [])
+
     const onRegister = () => {
-        let Sock = new SockJS('https://chatserver-lzop.onrender.com/ws')
+        let Sock = new SockJS(url + '/ws')
         stomp = over(Sock);
         stomp.connect({}, onConnected, onError);
         setMessage({...message, sender: user});
-
     }
 
     const onConnected = () => {
@@ -38,8 +49,6 @@ function Chat() {
         let payloadData = JSON.parse(payload.body);
         chatThread.push(payloadData);
         setChatThread([...chatThread])
-
-        console.log(chatThread);
     }
 
     const onError = (err) => {
@@ -72,7 +81,7 @@ function Chat() {
         <div className="bg-light border containerBox">
             { chatThread.map(e => 
                         <IncomingMessage
-                            key={e.sender + e.message}
+                            key={e.id}
                             message={e}
                             user={user}
                         />

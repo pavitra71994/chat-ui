@@ -5,7 +5,6 @@ import './IncomingMessage.css';
 
 function IncomingMessage(props) {
     const timestamp = new Date(props.message.datetime);
-    console.log(timestamp);
     const time = timestamp.toLocaleTimeString([], {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'});  
 
     return (  
