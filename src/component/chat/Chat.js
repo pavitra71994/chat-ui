@@ -27,7 +27,7 @@ function Chat() {
     useEffect(() => {
             fetch(url+ '/messages',
             {headers: new Headers({
-                'Access-Control-Allow-Origin': 'http://localhost:8080'
+                'Access-Control-Allow-Origin': url
             })})
             .then(resp => resp.json())
             .then(data => setChatThread(data))
